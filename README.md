@@ -209,3 +209,8 @@ a lightweight image compress framework for Android based on libJpeg.
  版本还在逐步更新中，欢迎各位大佬star，以及提出建议。
 
  GitHub demo下载地址：[https://github.com/JavaNoober/Light](https://github.com/JavaNoober/Light)
+
+###### 打包so步骤:
+ * 1:进入/Users/develop/project/storm/Light/light/src/main/jni
+ * 2:执行ndk-build 注意ndk版本号是:ndk-build=/Users/Library/Android/sdk/ndk/16.1.4479499/ndk-build
+ * 3:会在/Users/develop/project/storm/Light/light/src/main/libs目录下生成相应的so
