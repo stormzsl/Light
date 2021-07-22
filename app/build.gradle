@@ -24,14 +24,15 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
-//    splits {
-//        abi {
-//            enable true
-//            reset()
+    splits {
+        abi {
+            enable true
+            reset()
 //            include 'armeabi-v7a', 'armeabi'
-//            universalApk true
-//        }
-//    }
+            include 'arm64-v8a'
+            universalApk true
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 	TextView tvInfo1;
 	TextView tvInfo2;
 	Uri imageUri;
-	String path1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ttjpeg.jpg";
+	String path1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/pic3.jpg";
 	final static String info1 = "压缩后:\n高度：%d，宽度：%d，占用内存：%dKB，文件大小：%dKB";
 	final static String info2 = "原图片:\n高度：%d，宽度：%d，占用内存：%dKB，文件大小：%dKB";
 
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 		tvInfo = findViewById(R.id.tv_info);
 		tvInfo1 = findViewById(R.id.tv_info1);
 		tvInfo2 = findViewById(R.id.tv_info2);
+		DevicesUtil.printSupportAbis();
 
 		String url = "https://upload.jdcf88.com/test/2018/5/25/15272095511667.jpg";
 		new Thread(() -> {
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
 				}
 			});
 		}).start();
+
+		Bitmap compressBitmap = Light.getInstance().compress(path1);
+		ivCompress.setImageBitmap(compressBitmap);
 
 //		//Light1.2新增写法：
 //		Bitmap bitmap1 = Light.getInstance().source(imageUri).width(500).height(500).autoRotation(true).compress();
@@ -126,12 +130,12 @@ public class MainActivity extends AppCompatActivity {
 			Light.getInstance().compress(imageUri, args, path1);
             Bitmap compressBitmap = Light.getInstance().compress(path1);
 			ivCompress.setImageBitmap(compressBitmap);
-			Bitmap bitmap2 = BitmapFactory.decodeFile(path);
-			ivImage.setImageBitmap(bitmap2);
-//			tvInfo1.setVisibility(View.VISIBLE);
-//			tvInfo2.setVisibility(View.VISIBLE);
-//			tvInfo1.setText(String.format(Locale.CHINA, info1, compressBitmap.getHeight(),
-//					compressBitmap.getWidth(), MemoryComputeUtil.getMemorySize(compressBitmap), new File(path1).length() / 1024));
+//			Bitmap bitmap2 = BitmapFactory.decodeFile(path);
+//			ivImage.setImageBitmap(bitmap2);
+			tvInfo1.setVisibility(View.VISIBLE);
+			tvInfo2.setVisibility(View.VISIBLE);
+			tvInfo1.setText(String.format(Locale.CHINA, info1, compressBitmap.getHeight(),
+					compressBitmap.getWidth(), MemoryComputeUtil.getMemorySize(compressBitmap), new File(path1).length() / 1024));
 //			tvInfo2.setText(String.format(Locale.CHINA, info2, options.outHeight,
 //					options.outWidth, MemoryComputeUtil.getMemorySize(bitmap2), new File(path).length() / 1024));
 		}
